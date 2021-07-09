@@ -31,9 +31,9 @@ void setup() {
 // loop() runs over and over again, as quickly as it can execute.
 void loop() {
   display.loop();
+    // if button_2 is pressed Enable or disable interrupts 
   if(digitalRead(D7) == 0){
     if(interruptEnabled){
-       // enables interrupt handling
       noInterrupts(); 
       interruptEnabled = false;
     } else{
@@ -42,17 +42,18 @@ void loop() {
     }
     delay(1000);
   }
+  // if button_1 was pressed add 1 to the number on the oled display
   if(interruptOccured){
     interruptNumber = 1 + interruptNumber;
     interruptOccured = false;
   }
-    display.clearDisplay();
-		display.setTextSize(1);
-		display.setTextColor(WHITE);
-		display.setCursor(0,0);
-    display.println(interruptNumber);
-		display.display();
-    
+  display.clearDisplay();
+  display.setTextSize(1);
+  display.setTextColor(WHITE);
+  display.setCursor(0, 0);
+  display.println(interruptNumber);
+  display.display();
+
   // The core of your code will likely live here.
 
 }
